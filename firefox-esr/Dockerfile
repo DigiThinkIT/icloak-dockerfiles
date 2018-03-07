@@ -21,4 +21,9 @@ RUN  apk add --no-cache \
         libcanberra-gtk2 && \
         rm -rf /tmp/* 
 
-ENTRYPOINT [ "/usr/bin/firefox" ]
+RUN  addgroup -g 1003 volatile && \
+        adduser -D -h /home/ICLOAK -u 1001 volatile -G volatile
+
+USER volatile
+
+CMD [ "/usr/bin/firefox" ]
